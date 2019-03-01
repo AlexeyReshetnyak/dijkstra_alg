@@ -1,6 +1,6 @@
 function path = dijkstra_alg(adj, start_node, end_node)
   n=length(adj);
-  adj_list = adj2adjL(adj);
+  adj_list = adjw2l(adj);
   visited = false(1, n);
   distance = inf(1, n);
   parent = -1 * ones(1, n);
@@ -12,12 +12,11 @@ function path = dijkstra_alg(adj, start_node, end_node)
     neighbours = adj_list{v};
 
     for ii = 1:length(neighbours)
-      w = neighbours(ii);
-      %weight = neighbours(ii).weight
-      weight = 1;
-      if distance(w) > distance(v) + weight
-        distance(w) = distance(v) + weight;
-        parent(w) = v;
+      vn = neighbours{ii}.vertex;
+      weight = neighbours{ii}.weight;
+      if distance(vn) > distance(v) + weight
+        distance(vn) = distance(v) + weight;
+        parent(vn) = v;
       endif
     endfor
 
